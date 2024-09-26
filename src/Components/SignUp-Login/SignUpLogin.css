@@ -1,8 +1,8 @@
 .signUpLoginContainer{
     position: relative;
-    width: 70%;
+    width: 60rem;
     border-radius: 1rem;
-    height: 67%;
+    height: 28rem;
     box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.69);
     -webkit-box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.69);
     -moz-box-shadow: 0px 0px 15px 7px rgba(0,0,0,0.69);
