@@ -37,6 +37,6 @@ button:hover{
 .passwordContainer, .confirmPasswordContainer{
     margin-top: 1rem;
 }
-.loginButtonContainer{
+.loginButtonContainer, .signupButtonContainer{
     margin-top: 3rem;
 }

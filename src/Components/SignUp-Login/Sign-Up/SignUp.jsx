@@ -19,7 +19,7 @@ const SignUp = () => {
                             <label for="password">Confirm Password : </label>
                             <input type="password" name="password"/>
                         </div>
-                        <div className='loginButtonContainer'>
+                        <div className='signupButtonContainer'>
                             <button>Signup</button>
                         </div>
                     </form>
