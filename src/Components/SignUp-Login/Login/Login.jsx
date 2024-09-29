@@ -16,12 +16,16 @@ const Login = () => {
         })
     }
 
+    const submitForm = (event) => {
+        event.preventDefault();
+    }
+
     return(
         <>
             <div className='loginContainer'>
                 <h1>LOGIN</h1>
                 <div className='loginFormContainer'>
-                    <form>
+                    <form onSubmit={submitForm}>
                         <div className='usernameContainer'>
                             <label for="username">Username : </label>
                             <input type="text" name="username" value={loginData.username} onChange={changeData}/>
