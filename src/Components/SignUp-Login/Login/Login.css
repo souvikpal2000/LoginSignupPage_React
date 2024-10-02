@@ -2,7 +2,15 @@
     width: 50%;
     padding: 0rem 2rem 0rem 2rem;
 }
-.loginButtonContainer button:hover{
+.loginButtonContainer button{
     background-color: black;
     color: white;
+}
+.loginButtonContainer button:hover{
+    background-color: white;
+    color: black;
+}
+.loginButtonContainer button:focus{
+    background-color: white;
+    color: black;
 }
