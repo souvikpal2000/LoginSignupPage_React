@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './SignUp.css';
 
-const SignUp = () => {
+const SignUp = ({formReference, setLastInputFieldBeforeClick}) => {
     const [signupData, setSignupData] = useState({
         username: "",
         password: "",
@@ -14,7 +14,16 @@ const SignUp = () => {
                 ...preValue,
                 [event.target.name]: event.target.value
             }
-        })
+        });
+    }
+
+    const setFocusableElement = (event) => {
+        setLastInputFieldBeforeClick((preValue) => {
+            return{
+                ...preValue,
+                signupPage: event.target.name
+            }
+        });
     }
 
     const submitForm = (event) => {
@@ -29,15 +38,15 @@ const SignUp = () => {
                     <form onSubmit={submitForm}>
                         <div className='usernameContainer'>
                             <label for="username">Username : </label>
-                            <input type="text" name="username" value={signupData.username} onChange={changeData}/>
+                            <input type="text" name="username" value={signupData.username} onChange={changeData} ref={(el) => formReference.current['username'] = el} onFocus={setFocusableElement}/>
                         </div>
                         <div className='passwordContainer'>
                             <label for="password">Password : </label>
-                            <input type="password" name="password" value={signupData.password} onChange={changeData}/>
+                            <input type="password" name="password" value={signupData.password} onChange={changeData} ref={(el) => formReference.current['password'] = el} onFocus={setFocusableElement}/>
                         </div>
                         <div className='confirmPasswordContainer'>
                             <label for="password">Confirm Password : </label>
-                            <input type="password" name="confirmPassword" value={signupData.confirmPassword } onChange={changeData}/>
+                            <input type="password" name="confirmPassword" value={signupData.confirmPassword } onChange={changeData} ref={(el) => formReference.current['confirmPassword'] = el} onFocus={setFocusableElement}/>
                         </div>
                         <div className='signupButtonContainer'>
                             <button>Signup</button>

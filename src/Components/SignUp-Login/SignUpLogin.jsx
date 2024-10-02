@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import BlackBackground from '../BlackBackground/BlackBackground';
 import Login from './Login/Login';
 import SignUp from './Sign-Up/SignUp';
@@ -9,6 +9,14 @@ const SignUpLogin = () => {
         userClick: "Login",
         navigateToOtherSection: "Signup"
     });
+    
+    const [lastInputFieldBeforeClick, setLastInputFieldBeforeClick] = useState({
+        loginPage: "username",
+        signupPage: "username"
+    })
+
+    const loginFormReference = useRef({});
+    const signupFormReference = useRef({});
 
     const loginBackgroundStyle = {
         left: "0",
@@ -16,18 +24,33 @@ const SignUpLogin = () => {
     }
 
     const signupBackgroundStyle = {
-        right: "0",
-        left: "50%"
+        left: "50%",
+        right: "0"
     }
 
     return(
         <>
             <div className="signUpLoginContainer">
-                <SignUp/>
-                <Login/>
+                <SignUp formReference={signupFormReference}
+                        setLastInputFieldBeforeClick={setLastInputFieldBeforeClick}
+                />
+
+                <Login formReference={loginFormReference}
+                        setLastInputFieldBeforeClick={setLastInputFieldBeforeClick}
+                />
+
                 {choice.userClick === "Login" ?
-                    <BlackBackground choice={choice} setChoice={setChoice} dynamicStyling={loginBackgroundStyle} /> :
-                    <BlackBackground choice={choice} setChoice={setChoice} dynamicStyling={signupBackgroundStyle} />
+                    <BlackBackground choice={choice} setChoice={setChoice} 
+                                        dynamicStyling={loginBackgroundStyle} 
+                                        formReference={signupFormReference} 
+                                        lastInputFieldBeforeClick={lastInputFieldBeforeClick}
+                    /> :
+
+                    <BlackBackground choice={choice} setChoice={setChoice} 
+                                        dynamicStyling={signupBackgroundStyle} 
+                                        formReference={loginFormReference} 
+                                        lastInputFieldBeforeClick={lastInputFieldBeforeClick}
+                    />
                 }    
             </div>
         </>

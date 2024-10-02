@@ -1,19 +1,28 @@
 import { useState } from 'react';
 import './Login.css';
 
-const Login = () => {
+const Login = ({formReference, setLastInputFieldBeforeClick}) => {
     const [loginData, setLoginData] = useState({
         username: "",
         password: ""
     });
 
-    const changeData = (e) => {
+    const changeData = (event) => {
         setLoginData((preValue) => {
             return{
                 ...preValue,
-                [e.target.name]: e.target.value  
+                [event.target.name]: event.target.value  
             }
-        })
+        });
+    }
+
+    const setFocusableElement = (event) => {
+        setLastInputFieldBeforeClick((preValue) => {
+            return{
+                ...preValue,
+                loginPage: event.target.name
+            }
+        });
     }
 
     const submitForm = (event) => {
@@ -28,11 +37,11 @@ const Login = () => {
                     <form onSubmit={submitForm}>
                         <div className='usernameContainer'>
                             <label for="username">Username : </label>
-                            <input type="text" name="username" value={loginData.username} onChange={changeData}/>
+                            <input type="text" name="username" value={loginData.username} onChange={changeData} ref={(el) => formReference.current['username'] = el} onFocus={setFocusableElement}/>
                         </div>
                         <div className='passwordContainer'>
                             <label for="password">Password : </label>
-                            <input type="password" name="password" value={loginData.password} onChange={changeData}/>
+                            <input type="password" name="password" value={loginData.password} onChange={changeData} ref={(el) => formReference.current['password'] = el} onFocus={setFocusableElement}/>
                         </div>
                         <div className='loginButtonContainer'>
                             <button>Login</button>

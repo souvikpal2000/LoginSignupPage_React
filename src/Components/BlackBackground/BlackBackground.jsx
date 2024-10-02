@@ -1,7 +1,7 @@
 import "./BlackBackground.css"
 
 const BlackBackground = (fromParentComponent) => {
-    const {choice, setChoice, dynamicStyling} = fromParentComponent;
+    const {choice, setChoice, dynamicStyling, formReference, lastInputFieldBeforeClick} = fromParentComponent;
 
     const changeUserChoice = (event) => {
         setChoice((preValue) => {
@@ -9,7 +9,9 @@ const BlackBackground = (fromParentComponent) => {
                 userClick: event.target.name,
                 navigateToOtherSection: preValue.userClick
             }
-        })
+        });
+        
+        formReference.current[lastInputFieldBeforeClick[`${choice['navigateToOtherSection'].toLowerCase()}Page`]].focus();
     }
 
     return(
